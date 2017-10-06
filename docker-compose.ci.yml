@@ -1,0 +1,29 @@
+version: "3"
+services: 
+    elasticsearch:
+        image: elasticsearch:latest
+
+    mongodb:
+        image: mongo:latest
+
+    super-api-lint:
+        image: $HUB_URL:$TEST_TAG
+        command: /bin/bash -c "yarn install && yarn lint"
+
+    super-api-test:
+        image: $HUB_URL:$TEST_TAG
+        command: /bin/bash -c "yarn install && set -o pipefail && ./node_modules/.bin/mocha --colors -t 10000 ./dist/tests/tests.js | ./node_modules/.bin/bunyan --color"
+        depends_on:
+            - mongodb
+            - elasticsearch
+        environment:
+            - NODE_ENV=test
+            - LOG_LEVEL=info
+            - API_URL=http://localhost
+            - API_PORT=3637
+
+            - ROOT_PASSWD=root
+            - JWT_SECRET=jwt_super_secret
+
+            - MONGO_URL=mongodb://mongodb:27017/masuperdb
+            - ELASTIC_URL=elasticsearch:9200

@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Localhost",
+            "type": "node",
+            "request": "attach",
+            "protocol": "inspector",
+            "address": "localhost",
+            "port": 9229,
+            "restart": false,
+            "sourceMaps": true,
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "/app",
+            "outDir": "${workspaceRoot}/dist"
+        },
+        {
+            "name": "Staging",
+            "type": "node",
+            "request": "attach",
+            "protocol": "inspector",
+            "address": "192.168.122.1",
+            "port": 9229,
+            "restart": false,
+            "sourceMaps": true,
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "/app",
+            "outDir": "${workspaceRoot}/dist"
+        }
+    ]
+}

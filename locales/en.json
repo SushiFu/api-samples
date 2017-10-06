@@ -1,0 +1,13 @@
+{
+	"Healthy": "Healthy",
+	"Sample API": "Sample API",
+	"Your token is invalid": "Your token is invalid",
+	"%s %s not found": "%s %s not found",
+	"Unhandled server error": "Unhandled server error",
+	"No such profile exists": "No such profile exists",
+	"No such feedback exists": "No such feedback exists",
+	"Username or password incorrect": "Username or password incorrect",
+	"No such user exists": "No such user exists",
+	"This username is already taken": "This username is already taken",
+	"You do not have right permission": "You do not have right permission"
+}
