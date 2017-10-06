@@ -1,61 +1,58 @@
-# Carrelage
+# RESTful Sample API
+
+## Features
+- Users
+    - JWT Auth: Authorization Header & Cookie
+    - Routes restriction by roles & owner
+    - Password hash & salt by Bcrypt
+- Public Profiles
+    - Search by username using ElasticSearch
+    - List only by admin
+- Feedbacks
+    - Create only by logged user
+    - List only by admin
+    - Delete/Update only by admin or owner
+
+## Setup
+- Docker w/ Nodemon
+- Debug directly in VSCode
+- ES6 w/ Babel
+- Gulp Tasks
+- ESLint
+- Unit Testing
 
 ## Prerequisites
-### Optimize for VSCode
-- Docker
-- Node/Npm
-- Yarn
-- ESLint
+- [Docker](https://www.docker.com/community-edition)
+- [Node.js](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/en/docs/install)
+- [VSCode](https://code.visualstudio.com) (Recommended)
 
 ### Build
 ```bash
+$ yarn install
 $ yarn build #or run Build Task in VSCode
 ```
 
-### Launch in Dev (w/ nodemon)
+### Launch in Dev (w/ Nodemon)
+```bash
+$ yarn start #for hot-reload just build in VSCode
+```
+
+### Debug
 ```bash
 $ yarn start
+# Then just put some breakpoints and start "Localhost" config in Debug panel
+# VSCode debugger will just attach to the docker node instance
 ```
 
 ### Test
 ```bash
-$ yarn test #or run Test Task in VSCode
+$ yarn lint
+$ yarn test
 ```
 
-## DB Stack:
-- MongoDB
-- ElasticSearch
-- Redis (for cache)
-
-## Node Stack:
-- [Expressjs](https://github.com/expressjs/express)
-- [Passport](https://github.com/jaredhanson/passport)
-- [Mongoose](https://github.com/Automattic/mongoose)
-- [Nohm](https://github.com/maritz/nohm)
-- [Mocha](https://github.com/mochajs/mocha)
-
-- Gulp
-
-### Requests
-
-Activity new table:
-- like
-- comment
-
-Profile:
-- user
-- computed stats (spots pics, media, fullclip...)
-- media
-
-Spot:
-- spot
-- computed stats
-- media
-
-Embed all `addedBy` and `spot`
-
-Notification model:
-- `fromUser` (embeded)
-- `toUser` (embeded)
-- `type` (like|comment|mention|follow)
-- `object` (embeded)
+### Cleanup
+```bash
+$ yarn reset
+# If you respond "y" you will loose every data in your databases
+```
