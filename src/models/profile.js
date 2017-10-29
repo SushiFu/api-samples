@@ -11,12 +11,6 @@ export const ProfileSchema = new mongoose.Schema({
     _id: {
         type: String,
         match: [/^[a-z0-9_]{1,15}$/, "The value of path {PATH} ({VALUE}) is not a valid username."],
-        required: true,
-        unique: true,
-        index: true
-    },
-    _username: {
-        type: String,
         required: true
     },
     className: {
@@ -37,7 +31,6 @@ export const ProfileSchema = new mongoose.Schema({
     },
 }, utils.genSchemaConf((doc, ret) => {
     delete ret._id;
-    delete ret._username;
     delete ret.__v;
     return ret;
 }));
@@ -51,7 +44,6 @@ ProfileSchema.virtual("username")
     })
     .set(function (val) {
         this._id = val;
-        this._username = val;
     });
 
 /**
@@ -123,7 +115,7 @@ ProfileSchema.plugin(timestamps, {
 ProfileSchema.plugin(mongoostatic, {
     esClient: elastic,
     transform: function (data, profile) {
-        data.username = profile._username;
+        data.username = profile._id;
         return data;
     },
     customProperties: {
