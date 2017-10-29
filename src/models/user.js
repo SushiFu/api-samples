@@ -114,13 +114,16 @@ UserSchema.statics = {
      * @param {String} username
      * @param {String} password
      * @param {String} email
+     * @param {String} [role]
      * @returns {Promise<User>}
      */
-    create(username, password, email) {
+    create(username, password, email, role) {
         let user = new this();
         user._id = username;
         user.password = password;
         user.email = email;
+        if (role)
+            user.role = role;
         return Profile
             .create(username)
             .then(() => {
@@ -129,18 +132,15 @@ UserSchema.statics = {
     },
 
     /**
-     * Create a new user w/ role & empty profile
-     * @param {String} username
+     * Ensure root user is created
      * @param {String} password
-     * @param {String} email
-     * @param {String} role
      * @returns {Promise<User>}
      */
-    createOrUpdate(username, password, email, role) {
+    ensureRootCreation(password) {
         return Profile
-            .create(username)
+            .create("root")
             .then(() => {
-                return this.findById(username);
+                return this.findById("root");
             })
             .then(exist => {
                 let user;
@@ -149,11 +149,11 @@ UserSchema.statics = {
                 }
                 else {
                     user = new this();
-                    user._id = username;
+                    user._id = "root";
                 }
                 user.password = password;
-                user.email = email;
-                user.role = role;
+                user.email = "root@superapi.gg";
+                user.role = "admin";
                 return user.save();
             });
     }

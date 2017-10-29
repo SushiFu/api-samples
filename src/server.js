@@ -7,8 +7,7 @@ import logger from "./server/logger";
 import User from "./models/user";
 
 function createRoot() {
-    return User
-        .createOrUpdate("root", config.ROOT_PASSWD, "root@superapi.gg", "admin")
+    return User.ensureRootCreation(config.ROOT_PASSWD)
         .catch(() => {
             return Promise.reject(new Error("Error when create root user"));
         });

@@ -29,7 +29,7 @@ function get(req, res) {
  * @property {string} req.body.role - The role of user.
  */
 function create(req, res, next) {
-    User.createWithRole(req.body.username, req.body.password, req.body.email, req.body.role)
+    User.create(req.body.username, req.body.password, req.body.email, req.body.role)
         .then(user => res.json(user))
         .catch(e => next(e));
 }
