@@ -31,7 +31,7 @@
     "jsonwebtoken": "^7.2.1",
     "method-override": "^2.3.7",
     "mongoosastic": "^4.2.4",
-    "mongoose": "^4.7.6",
+    "mongoose": "^4.13.21",
     "mongoose-timestamp": "^0.6.0",
     "multer": "^1.2.1",
     "passport": "^0.3.2",
